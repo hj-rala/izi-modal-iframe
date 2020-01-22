@@ -1,0 +1,56 @@
+css ----
+/** modal **/
+[id^="modal-"] {margin:auto;}
+
+
+
+
+
+
+
+
+script ----
+
+// modal close
+var closeBtn = function(target){
+	$('#'+target+'').iziModal('close');
+  setTimeout( function(){ 
+	$('#'+target+'').remove();
+	$('.iziModal-overlay').remove();
+  }, 500);	
+};
+
+$(function(){
+  (페이지 오픈하면서 팝업)
+	var pwpopOpen = function(){
+		$('#modal-video').iziModal({
+			iframe: true,
+			width: 720,
+			autoOpen: 1,
+			iframeURL: 'main_pop.asp',
+			onOpening: function(){
+				$('#modal-video').find('iframe').load(function(){
+					$(this).resize();
+				});
+			},
+		});
+	}
+  pwpopOpen();
+  
+  //모달 팝업
+	$('.videoBtn1').bind('click',function(){
+		$('#modal-video1').iziModal({
+			iframe: true,
+			width: 900,
+			iframeURL: '/page/video_pop1.php',
+			onOpening: function(){
+				$('#modal-video1').find('iframe').load(function(){
+					$(this).resize();
+				});
+			},
+		});
+	});
+  
+  
+});
+
